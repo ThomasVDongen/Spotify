@@ -65,23 +65,9 @@ namespace Spotify.Models.Objecten
             set { trial = value; }
         }
 
-        public Account(int iD, string name, string email, int payDay, DateTime trialStartDate)
-        {
-            this.iD = iD;
-            this.Name = name;
-            this.email = email;
-            this.payDay = payDay;
-            this.trialStartDate = trialStartDate;
-        }
+        public Music Music { get; set; }
 
-        public Account(string name, string email)
-        {
-            this.Name = name;
-            this.email = email;
-            //TODO: generate function that automaticly adds an id in the database.
-
-        }
-
+        
         public int CalculateTrial(DateTime datetime)
         {
             return Convert.ToInt32(DateTime.Now - datetime);

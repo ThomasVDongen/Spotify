@@ -205,6 +205,12 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Objecten\Account.cs" />
+    <Compile Include="Models\Objecten\Album.cs" />
+    <Compile Include="Models\Objecten\Artist.cs" />
+    <Compile Include="Models\Objecten\Genre.cs" />
+    <Compile Include="Models\Objecten\Music.cs" />
+    <Compile Include="Models\Objecten\Playlist.cs" />
+    <Compile Include="Models\Objecten\Song.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
