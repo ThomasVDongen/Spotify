@@ -1,0 +1,33 @@
+﻿body {
+}
+
+ul
+{
+list-style-type: none;
+}
+
+.sidebar, .sidebar a {
+    float: left;
+    width: 15%;
+    background-color: rgb(40,40,40);
+    color: rgb(173, 175, 178);
+}
+.sidebar {
+    height: 800px;
+    padding-top: 30px;
+    border-color: black;
+}
+
+.sidebar p {
+    font-size: 18px;
+    padding-top: 20px;
+}
+
+.nav, .navbar {
+    background-color: rgb(40,40,40);
+}
+
+h2 {
+    color: rgb(173, 175, 178);
+    padding-left: 30px;
+}

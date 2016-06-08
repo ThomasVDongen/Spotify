@@ -4240,6 +4240,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-nav {
   margin: 7.5px -15px;
+    float: left;
 }
 
 .navbar-nav > li > a {
@@ -6814,3 +6815,5 @@ td.visible-print {
     display: none !important;
   }
 }
+
+

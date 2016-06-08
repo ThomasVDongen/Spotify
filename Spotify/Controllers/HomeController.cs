@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Spotify.Models.Objecten;
 
 namespace Spotify.Controllers
 {
@@ -13,18 +14,25 @@ namespace Spotify.Controllers
             return View();
         }
 
-        public ActionResult About()
+       public ActionResult Nummers()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Artiesten()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
+
+        public ActionResult Albums()
+        {
+            return View();
+        }
+
+        public ActionResult Playlists(Playlist playlist)
+        {
+            return View(playlist);
+        }
+
     }
 }

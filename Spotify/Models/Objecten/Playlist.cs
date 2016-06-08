@@ -9,6 +9,7 @@ namespace Spotify.Models.Objecten
     {
         public int ID { get; set; }
         public List<Song> Songs { get; set; }
+        public string Name { get; set; }
 
     }
 }
