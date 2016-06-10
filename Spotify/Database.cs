@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc.Html;
+using System.Web.UI.WebControls;
+using Antlr.Runtime.Misc;
 using Oracle.ManagedDataAccess.Client;
 using Spotify.Models.Objecten;
 
@@ -14,7 +17,7 @@ namespace Spotify
         /// <summary>
         /// The password used to connect with the database.
         /// </summary>
-        private const string PASSWORD = "thomas";
+        private const string PASSWORD = "wXkDxOdQUV";
 
         /// <summary>
         /// The oracle-specific string used to connect with the database.
@@ -89,7 +92,7 @@ namespace Spotify
 
         public static List<Song> GetSongs()
         {
-            string sqlS = "SELECT * FROM ";
+            string sqlS = "SELECT * FROM NUMMER";
             OracleCommand sqlC = new OracleCommand(sqlS);
             List<Song> songs = new List<Song>();
 
@@ -99,7 +102,13 @@ namespace Spotify
                 return songs;
             while (oraReader.Read())
             {
-                
+                Song song = new Song();
+                song.ID = Convert.ToInt32(oraReader["ID"]);
+                song.Artists = GetArtistsID(song.ID);
+                song.Releasedate = Convert.ToDateTime(oraReader["releasedate"]);
+                song.Name = Convert.ToString(oraReader["Titel"]);
+                song.Speelduur = Convert.ToDouble(oraReader["SPEELDUUR"]);
+                song.Genres = GetGenresID(song.ID);
             }
 
             CloseConnection();
@@ -107,5 +116,126 @@ namespace Spotify
             return songs;
         }
 
+        public static List<Artist> GetArtistsID(int id)
+        {
+            string sqlS = "SELECT NA.ARTIESTID FROM NUMMER_ARTIEST NA" + "JOIN NUMMER N ON NA.NUMMERID = N.ID " + "WHERE N.ID = " + id;
+            OracleCommand sqlC = new OracleCommand(sqlS);
+            List<Artist> ArtistIDs = new List<Artist>();
+            OracleDataReader oraReader = ReadData(sqlC);
+            Artist artist = new Artist();
+
+            if (oraReader == null)
+                return ArtistIDs;
+            while (oraReader.Read())
+            {
+                artist.ID = Convert.ToInt32(oraReader["ARTIESTID"]);
+                ArtistIDs.Add(artist);
+            }
+
+            CloseConnection();
+            return ArtistIDs;
+        }
+
+        public static List<Genre> GetGenresID(int id)
+        {
+            string sqlS = "SELECT NG.GENREID FROM NUMMER_GENRE NG" + "JOIN NUMMER N ON NG.NUMMERID = N.ID" + "WHERE N.ID = " + id;
+            OracleCommand sqlC = new OracleCommand(sqlS);
+            List<Genre> GenresID = new List<Genre>();
+            Genre genre = new Genre();
+
+            OracleDataReader oraReader = ReadData(sqlC);
+
+            if (oraReader == null)
+                return GenresID;
+            while (oraReader.Read())
+            {
+                genre.ID = Convert.ToInt32(oraReader["GENREID"]);
+                GenresID.Add(genre);
+
+            }
+
+            CloseConnection();
+            return GenresID;
+        }
+
+        public static List<Playlist> GetPlaylists(int musicid)
+        {
+            string sqlS = "SELECT A.TITEL, A.ID FROM AFSPEELLIJST A" + "JOIN MUZIEK_AFSPEELLIJST MA ON A.ID = MA.AFSPEELLIJSTID" +
+                "JOIN MUZIEK M ON MA.MUZIEKID = M.ID" + "WHERE M.ID =" + musicid;
+            OracleCommand sqlC = new OracleCommand(sqlS);
+            List<Playlist> playlists = new List<Playlist>();
+            Playlist playlist = new Playlist();
+
+            OracleDataReader oraReader = ReadData(sqlC);
+
+            if (oraReader == null)
+                return playlists;
+            while (oraReader.Read())
+            {
+                playlist.ID = Convert.ToInt32(oraReader["ID"]);
+                playlist.Name = Convert.ToString(oraReader["TITEL"]);
+                playlists.Add(playlist);
+
+            }
+
+            CloseConnection();
+            return playlists;
+
+        }
+
+        public static bool Login(string login, string password)
+        {
+            OracleCommand cmd = new OracleCommand("SELECT * FROM account WHERE email = :email AND wachtwoord = :wachtwoordHash");
+            cmd.Parameters
+                .Add("email", OracleDbType.NVarchar2)
+                .Value = login;
+
+            cmd.Parameters
+                .Add("wachtwoordHash", OracleDbType.NVarchar2)
+                .Value = password;
+
+            OracleDataReader oraReader = ReadData(cmd);
+            if (oraReader.HasRows)
+            {
+                oraReader.Dispose();
+                cmd.Dispose();
+                CloseConnection();
+                return true;
+            }
+            else
+            {
+                oraReader.Dispose();
+                cmd.Dispose();
+                CloseConnection();
+                return false;
+            }
+
+        }
+
+        public static Account GetAccount(string email)
+        {
+            Account account = new Account();
+            OracleCommand cmd = new OracleCommand("SELECT * FROM account WHERE email = " + email);
+            OracleDataReader oraReader = ReadData(cmd);
+
+            if (oraReader == null)
+                return account;
+            while (oraReader.Read())
+            {
+                account.ID = Convert.ToInt32(oraReader["ID"]);
+                account.Name = Convert.ToString(oraReader["Naam"]);
+                account.Email = email;
+                Music music = new Music();
+                music.ID = account.ID;
+                account.Music = music;
+                account.Music.Playlists = GetPlaylists(account.Music.ID);
+            }
+
+            CloseConnection();
+            return account;
+
+        }
+
+
     }
-    }
+}

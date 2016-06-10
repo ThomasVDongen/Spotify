@@ -11,7 +11,8 @@ namespace Spotify.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+           
+            return View(Database.getAccount(User.Identity.Name));
         }
 
        public ActionResult Nummers()
@@ -19,18 +20,19 @@ namespace Spotify.Controllers
             return View();
         }
 
-        public ActionResult Artiesten()
+        public ActionResult Artiesten(Artist artist)
         {
             return View();
         }
 
-        public ActionResult Albums()
+        public ActionResult Albums(Album album)
         {
             return View();
         }
-
-        public ActionResult Playlists(Playlist playlist)
+        
+        public ActionResult Playlist(int playlist)
         {
+            
             return View(playlist);
         }
 

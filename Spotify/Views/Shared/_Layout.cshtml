@@ -15,7 +15,9 @@
         </div>
         <br>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav"></ul>
+            <ul class="nav navbar-nav">
+                @Html.ActionLink(@Model.Name, "Index", "Account");
+            </ul>
         </div>
     </div>
     <div class="sidebar">
@@ -40,12 +42,18 @@
             <li>
                 <p>AFSPEELLIJSTEN</p>
             </li>
-            @foreach (Playlist pl in Model.Music.Playlists)
+            @try
             {
-                <li>@Html.ActionLink(pl.Name, "Playlists", "Home")</li>
-                <br/>
+                foreach (Playlist pl in Model.Music.Playlists)
+                {
+                    <li>@Html.ActionLink(pl.Name, "Playlist", "Home")</li>
+                    <br />
+                }
             }
-
+            catch (NullReferenceException)
+            {
+                <li><p>Je hebt nog geen afpseellijsten</p></li>
+            }
 
         </ul>
     </div>
