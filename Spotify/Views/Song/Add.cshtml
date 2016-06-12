@@ -9,9 +9,13 @@
 }
 else
 {
-    foreach (Playlist pl in Model.Account.Music.Playlists)
+    foreach (Playlist pl in from pl in Model.Account.Music.Playlists where pl.Songs.Count != 0 from song in pl.Songs where song.ID != Model.ID select pl)
     {
-        <li>@Html.ActionLink(pl.Name, "AddSong", "Playlist", pl.ID, Model.ID)</li>
-            <br />
+        using (@Html.BeginForm("AddSong", "Playlist"))
+        {
+            @Html.Hidden("playlistid", pl.ID)
+            @Html.Hidden("songid", @Model.ID)
+            @:<input type="submit" value="@pl.Name" class="btn btn-default" style="background-color: rgb(40, 40, 40); color: white">
+        }
     }
 }

@@ -3,19 +3,19 @@
 <link href="~/Content/Vieuw.css" rel="stylesheet" />
 
 <td>@Html.Label(Model.Name)</td>
+<td>
+    @foreach (Artist artist in Model.Artists)
+    {
+        @Html.Label(artist.Name)
+    }
+</td>
 <td>@Html.Label(@Model.Speelduur.ToString("N2"))</td>
 <td>
     @foreach (Genre genre in Model.Genres)
-            {
+    {
         @Html.Label(genre.Name)
     }
 </td>
 <td>
-    @foreach (Artist artist in Model.Artists)
-            {
-                @Html.Label(artist.Name)
-            }
-</td>
-<td>
-    @Html.ActionLink("Voeg Toe aan afspeellijst", "Add", "Song", new {id = @Model.ID}, null)
+   @Html.Action("Add", "Song", new {id = @Model.ID})
 </td>

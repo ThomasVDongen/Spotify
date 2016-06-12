@@ -17,7 +17,7 @@ namespace Spotify.Controllers
             return PartialView(Database.GetSong(id));
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Add(int id)
         {
             AccountSongID accountS = new AccountSongID();

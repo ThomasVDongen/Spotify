@@ -9,11 +9,6 @@ namespace Spotify.Controllers
     public class PlaylistController : Controller
     {
         // GET: Playlist
-        public ActionResult Playlist()
-        {
-            return View();
-        }
-
         [HttpPost]
         public ActionResult AddSong(int playlistid, int songid)
         {

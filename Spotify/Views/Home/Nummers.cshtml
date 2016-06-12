@@ -19,10 +19,10 @@
         <table style="width: 80%">
             <tr>
                 <th>@Html.Label("Name:")</th>
+                <th>@Html.Label(artiest)</th>
                 <th>@Html.Label("Speelduur:")</th>
                 <th>@Html.Label("Genres:")</th>
-                <th>@Html.Label(artiest)</th>
-                <th></th>
+                <th>Voeg to aan Afspeellijst:</th>
             </tr>
             <tr>@Html.Action("Song", "Song", new { id = song.ID })</tr>
         </table>

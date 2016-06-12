@@ -279,10 +279,10 @@
     <Content Include="Views\Home\PlaylistsPartial.cshtml" />
     <Content Include="Views\Home\AccountPartial.cshtml" />
     <Content Include="Views\Song\Add.cshtml" />
+    <Content Include="Views\Playlist\AddSong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Playlist\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

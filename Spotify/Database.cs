@@ -307,6 +307,10 @@ namespace Spotify
                     music.ID = account.ID;
                     account.Music = music;
                     account.Music.Playlists = GetPlaylists(account.Music.ID);
+                    foreach (Playlist playlist in account.Music.Playlists)
+                    {
+                        playlist.Songs = GetSongsPlaylist(playlist.ID);
+                    }
                 }
 
 
