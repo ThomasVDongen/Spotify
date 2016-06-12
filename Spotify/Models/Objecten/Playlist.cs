@@ -11,5 +11,10 @@ namespace Spotify.Models.Objecten
         public List<Song> Songs { get; set; }
         public string Name { get; set; }
 
+
+        public bool AddSong(int songID)
+        {
+            return Database.AddSongToPlaylist(songID, ID);
+        }
     }
 }

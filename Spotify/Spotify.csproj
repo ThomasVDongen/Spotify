@@ -203,10 +203,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PlaylistController.cs" />
+    <Compile Include="Controllers\SongController.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountSongID.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Objecten\Account.cs" />
@@ -223,6 +226,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Sidebar.css" />
+    <Content Include="Content\Vieuw.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -268,12 +272,17 @@
     <Content Include="Views\Home\Nummers.cshtml" />
     <Content Include="Views\Home\Artiesten.cshtml" />
     <Content Include="Views\Home\Albums.cshtml" />
-    <Content Include="Views\Home\Playlists.cshtml" />
+    <Content Include="Views\Home\Playlist.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Song\Song.cshtml" />
+    <Content Include="Views\Home\PlaylistsPartial.cshtml" />
+    <Content Include="Views\Home\AccountPartial.cshtml" />
+    <Content Include="Views\Song\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Playlist\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

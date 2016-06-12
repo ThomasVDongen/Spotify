@@ -32,8 +32,8 @@ namespace Spotify.Models.Objecten
         [Display(Name = "Naam:")]
         public string Name
         {
-            get { return Name; }
-            set { Name = value; }
+            get { return name; }
+            set { name = value; }
         }
         [Required]
         [Display(Name = "Email:")]

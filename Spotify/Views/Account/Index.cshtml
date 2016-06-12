@@ -4,12 +4,12 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link href="~/Content/Vieuw.css" rel="stylesheet" />
 <h2>Jouw account</h2>
 <div class="control-label" for="inputLarge" id="lbUserName">
-    @Html.LabelFor(M => M.Name);
+    @Html.LabelFor(M => M.Name)
 </div>
 <div typeof="text" id="tbName">
-    @Html.TextBoxFor(M => M.Name);
+    @Html.TextBoxFor(M => M.Name)
 </div>
 

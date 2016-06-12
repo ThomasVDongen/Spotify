@@ -1,0 +1,17 @@
+﻿@using Spotify.Models.Objecten
+@model Spotify.Models.AccountSongID
+
+@if (Model.Account.Music.Playlists.Count == 0)
+{
+    <li>
+        <p>Je hebt nog geen afpseellijsten</p>
+    </li>
+}
+else
+{
+    foreach (Playlist pl in Model.Account.Music.Playlists)
+    {
+        <li>@Html.ActionLink(pl.Name, "AddSong", "Playlist", pl.ID, Model.ID)</li>
+            <br />
+    }
+}

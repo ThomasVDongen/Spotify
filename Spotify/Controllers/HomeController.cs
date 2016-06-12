@@ -9,31 +9,43 @@ namespace Spotify.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
         {
-           
-            return View(Database.getAccount(User.Identity.Name));
+            return View(Database.GetAccount(User.Identity.Name));
+        }
+        [HttpGet]
+        public ActionResult Nummers()
+        {
+            Account account = Database.GetAccount(User.Identity.Name);
+            return View(Database.GetSongs(account.ID));
         }
 
-       public ActionResult Nummers()
+        public ActionResult Artiesten()
+        {
+            Account account = Database.GetAccount(User.Identity.Name);
+            return View(Database.GetArtists(account.ID));
+        }
+
+        public ActionResult Albums()
         {
             return View();
         }
-
-        public ActionResult Artiesten(Artist artist)
+        [HttpGet]
+        public ActionResult Playlist(int id)
         {
-            return View();
+            return View(Database.GetPlaylist(id));
+        }
+        [ChildActionOnly]
+        public ActionResult PlaylistsPartial()
+        {
+            return PartialView(Database.GetAccount(User.Identity.Name));
         }
 
-        public ActionResult Albums(Album album)
+        [ChildActionOnly]
+        public ActionResult AccountPartial()
         {
-            return View();
-        }
-        
-        public ActionResult Playlist(int playlist)
-        {
-            
-            return View(playlist);
+            return PartialView(Database.GetAccount(User.Identity.Name));
         }
 
     }

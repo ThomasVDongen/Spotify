@@ -7,6 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/Sidebar.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -16,7 +17,7 @@
         <br>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                @Html.ActionLink(@Model.Name, "Index", "Account");
+                <li>@Html.Action("AccountPartial", "Home")</li>
             </ul>
         </div>
     </div>
@@ -36,26 +37,20 @@
             <br />
             <li>@Html.ActionLink("Artiesten", "Artiesten", "Home")</li>
         </ul>
-        @using Spotify.Models.Objecten
-        @model Account
-        <ul>
-            <li>
+        <div>
+            <div>
                 <p>AFSPEELLIJSTEN</p>
-            </li>
-            @try
-            {
-                foreach (Playlist pl in Model.Music.Playlists)
-                {
-                    <li>@Html.ActionLink(pl.Name, "Playlist", "Home")</li>
-                    <br />
-                }
-            }
-            catch (NullReferenceException)
-            {
-                <li><p>Je hebt nog geen afpseellijsten</p></li>
-            }
+            </div>
+            <div>
+                <ul>
+                    @Html.Action("PlaylistsPartial", "Home")
+                </ul>
+                <div>
+                    <input class="btn btn-default btnadd" type="button" value="+" /><p>Nieuwe Afspeellijst</p>
+                </div>
+            </div>
+        </div>
 
-        </ul>
     </div>
 
     <div class="container body-content">
