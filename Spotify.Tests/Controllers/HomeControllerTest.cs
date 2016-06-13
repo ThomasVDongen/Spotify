@@ -17,25 +17,13 @@ namespace Spotify.Tests.Controllers
         {
             // Arrange
             HomeController controller = new HomeController();
-            // Act
-            ViewResult index = controller.Index() as ViewResult;
-            ViewResult accountPartial = controller.AccountPartial() as ViewResult;
-            ViewResult playlist = controller.Playlist(1) as ViewResult;
-            ViewResult nummers = controller.Nummers() as ViewResult;
-            ViewResult albums = controller.Albums() as ViewResult;
-            ViewResult artiesten = controller.Artiesten() as ViewResult;
-            ViewResult playlistPartial = controller.PlaylistsPartial() as ViewResult;
-            // Assert
-            Assert.IsNotNull(index);
-            Assert.IsNotNull(accountPartial);
-            Assert.IsNotNull(playlist);
-            Assert.IsNotNull(nummers);
-            Assert.IsNotNull(albums);
-            Assert.IsNotNull(artiesten);
-            Assert.IsNotNull(playlistPartial);
-        }
 
-        
+            // Act
+            ViewResult result = controller.Index() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
 
       }
 }
