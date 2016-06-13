@@ -23,6 +23,7 @@ namespace Spotify.Tests.Controllers
             Assert.IsNotNull(login);
             Assert.IsNotNull(logout);
             Assert.IsNotNull(index);
+            string commit;
 
         }
     }
