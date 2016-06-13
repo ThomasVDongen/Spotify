@@ -1,0 +1,62 @@
+﻿@using Spotify.Models.Objecten
+@model Spotify.Models.Objecten.Artist
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Vieuw.css" rel="stylesheet" />
+<h2>Artiest: @Model.Name</h2>
+<h3>Nummers:</h3>
+<table>
+    <tr>
+        <th>
+            Titel:
+        </th>
+        <th>
+            Releasedate:
+        </th>
+        <th>
+            Speelduur:
+        </th>
+    </tr>
+    @foreach (Song song in Model.Songs)
+    {
+        <tr>
+            <td>
+                @song.Name
+            </td>
+            <td>
+                @song.Releasedate.ToShortDateString()
+            </td>
+            <td>
+                @song.Speelduur.ToString("N2")
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h3>Albums: </h3>
+<table>
+    <tr>
+        <th>
+            Titel:
+        </th>
+        <th>
+            Releasedate:
+        </th>
+    </tr>
+    @foreach (Album album in Model.Albums)
+    {
+        <tr>
+            <td>
+                @album.Titel
+            </td>
+            <td>
+                @album.ReleaseDate.ToShortDateString()
+            </td>
+        </tr>
+    }
+</table>
+

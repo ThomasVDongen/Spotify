@@ -1,4 +1,5 @@
-﻿@model List<Spotify.Models.Objecten.Artist>
+﻿@using Spotify.Models.Objecten
+@model List<Spotify.Models.Objecten.Artist>
 
 @{
     ViewBag.Title = "Artiesten";
@@ -6,4 +7,22 @@
 }
 <link href="~/Content/Vieuw.css" rel="stylesheet" />
 <h2>Artiesten</h2>
-
+@if (Model.Count != 0)
+{
+    <table>
+        <tr>
+            <th>
+                Naam:
+            </th>
+        </tr>
+        @foreach (Artist artist in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(artist.Name, "Index", "Artiest", new {artistid = artist.ID}, null)
+                </td>
+            </tr>
+        }
+        
+    </table>
+}

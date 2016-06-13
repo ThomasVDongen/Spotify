@@ -15,41 +15,40 @@
     <link href="~/Content/Vieuw.css" rel="stylesheet" />
 </head>
 <body>
-@using (Html.BeginForm())
-{
-    <div id="login" class="col-lg-4 col-md-offset-4">
-        <div class="panel panel-success">
+    @using (Html.BeginForm())
+    {
+        <div id="login" class="col-lg-4 col-md-offset-4">
+            <div class="panel panel-success">
 
-            <div class="panel-heading">
-                <h3 class="panel-title">Spotify</h3>
-            </div>
-            <div class="panel-body">
-                @Html.ValidationSummary(true, "Login failed. Check your login details.")
-                <div>
-                    <fieldset>
-                        <div class="control-label" for="inputLarge" id="lbUserName">
-                            @Html.LabelFor(u => u.Email)
-                        </div>
-                        <div typeof="text" id="tbName">
-                            @Html.TextBoxFor(u => u.Email, new {@class = "form-control input-lg"})
-                            @Html.ValidationMessageFor(u => u.Email, "", new {@class = "text-danger"})
-                        </div>
-                        <div class="control-label" for="inputLarge" id="lbPassword">
-                            @Html.LabelFor(u => u.Password)
-                        </div>
-                        <div typeof="password" id="tbPassword">
-                            @Html.PasswordFor(u => u.Password, new {@class = "form-control input-lg"})
-                            @Html.ValidationMessageFor(u => u.Password, "", new {@class = "text-danger"})
-                        </div>
-                        <div class="btn-group col-md-offset-3">
-                            <button class="btn btn-success" type="submit" value="Log In"> Log In </button>
-                            <button class="btn btn-success" type="submit" value="Register"> Register </button>
-                        </div>
-                    </fieldset>
+                <div class="panel-heading">
+                    <h3 class="panel-title">Spotify</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.ValidationSummary(true, "Login failed. Check your login details.")
+                    <div>
+                        <fieldset>
+                            <div class="control-label" for="inputLarge" id="lbUserName">
+                                @Html.LabelFor(u => u.Email)
+                            </div>
+                            <div typeof="text" id="tbName">
+                                @Html.TextBoxFor(u => u.Email, new { @class = "form-control input-lg" })
+                                @Html.ValidationMessageFor(u => u.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="control-label" for="inputLarge" id="lbPassword">
+                                @Html.LabelFor(u => u.Password)
+                            </div>
+                            <div typeof="password" id="tbPassword">
+                                @Html.PasswordFor(u => u.Password, new { @class = "form-control input-lg" })
+                                @Html.ValidationMessageFor(u => u.Password, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="btn-group col-md-offset-3">
+                                <button class="btn btn-success" type="submit" value="Log In"> Log In </button>
+                            </div>
+                        </fieldset>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-}
+    }
 </body>
 </html>

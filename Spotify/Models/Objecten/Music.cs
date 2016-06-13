@@ -7,7 +7,7 @@ namespace Spotify.Models.Objecten
 {
     public class Music
     {
-        public int ID { get; set; } 
+        public int ID { get; set; }
         public List<Album> Albums { get; set; }
         public List<Song> Songs { get; set; }
         public List<Artist> Artists { get; set; }

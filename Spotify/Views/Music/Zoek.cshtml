@@ -1,0 +1,94 @@
+﻿@using Spotify.Models.Objecten
+@model Spotify.Models.ZoekenModel
+
+@{
+    ViewBag.Title = "Zoek";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Vieuw.css" rel="stylesheet" />
+<h2>Zoekopdracht:</h2>
+<div>
+    @if (@Model.Albums.Count == 0)
+    {
+        <h3>Er zijn geen albums gevonden met deze zoekterm</h3>
+    }
+    else
+    {
+        <h3>Gevonden albums: </h3>
+        <table>
+            <tr>
+                <th>Naam:</th>
+                <th>Artiest: </th>
+                <th>Releasedate:</th>
+            </tr>
+            @foreach (Album album in Model.Albums)
+            {
+                <tr>
+                    <td>@Html.ActionLink(album.Titel, "Index", "Album", new {id = album.ID}, null)</td>
+                    <td>@Html.ActionLink(album.Artist.Name, "Index", "Artiest", new {artistid = album.Artist.ID}, null)</td>
+                    <td>
+                        <p>@album.ReleaseDate.ToShortDateString()</p>
+                    </td>
+                </tr>
+            }
+        </table>
+
+    }
+</div>
+<div>
+    @if (@Model.Songs.Count == 0)
+    {
+        <h3>Er zijn geen nummers gevonden met deze zoekterm</h3>
+    }
+    else
+    {
+        <h3>Gevonden Nummers: </h3>
+        <table>
+            <tr>
+                <th>Naam:</th>
+                <th>Artiest: </th>
+                <th>Releasedate:</th>
+                <th></th>
+            </tr>
+            @foreach (Song song in Model.Songs)
+                {
+                <tr>
+                    <td>@song.Name.ToString()</td>
+                    <td>
+                        @foreach (Artist artist in song.Artists)
+                    {
+                        @Html.ActionLink(artist.Name, "Index", "Artiest", new { artistid = artist.ID }, null)
+                    }
+
+                </td>
+                <td>
+                    <p>@song.Releasedate.ToShortDateString()</p>
+                </td>
+
+            </tr>
+            }
+        </table>
+    }
+</div>
+<div>
+    @if (@Model.Artists.Count == 0)
+    {
+        <h3>Er zijn geen artiesten gevonden met deze zoekterm</h3>
+    }
+    else
+    {
+        <h3>Gevonden artiesten: </h3>
+        <table>
+            <tr>
+                <th>Naam:</th>
+            </tr>
+            @foreach (Artist artist in @Model.Artists)
+            {
+                <tr>
+                    <td>@Html.ActionLink(artist.Name, "Index", "Artiest", new { artistid = artist.ID }, null)</td>
+                </tr>
+            }
+        </table>
+
+    }
+</div>

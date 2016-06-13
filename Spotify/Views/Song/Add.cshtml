@@ -9,13 +9,40 @@
 }
 else
 {
-    foreach (Playlist pl in from pl in Model.Account.Music.Playlists where pl.Songs.Count != 0 from song in pl.Songs where song.ID != Model.ID select pl)
+   
+    foreach (Playlist pl in Model.Account.Music.Playlists)
     {
-        using (@Html.BeginForm("AddSong", "Playlist"))
+        //kijken of de lijst leeg is
+        if (pl.Songs.Count != 0)
         {
-            @Html.Hidden("playlistid", pl.ID)
-            @Html.Hidden("songid", @Model.ID)
-            @:<input type="submit" value="@pl.Name" class="btn btn-default" style="background-color: rgb(40, 40, 40); color: white">
+            foreach (Song song in pl.Songs)
+            {
+                //kijken of het song id in de playlist voorkomt
+                if (song.ID == @Model.ID)
+                {
+                    
+                }
+                else
+                {
+                    using (@Html.BeginForm("AddSong", "Playlist"))
+                    {
+                        @Html.Hidden("playlistid", pl.ID)
+                        @Html.Hidden("songid", @Model.ID)
+                        @:<input type="submit" value="@pl.Name" class="btn btn-default" style="background-color: rgb(40, 40, 40); color: white">
+                    }
+                }
+            }
+
         }
+        else
+        {
+            using (@Html.BeginForm("AddSong", "Playlist"))
+            {
+                @Html.Hidden("playlistid", pl.ID)
+                @Html.Hidden("songid", @Model.ID)
+                @:<input type="submit" value="@pl.Name" class="btn btn-default" style="background-color: rgb(40, 40, 40); color: white">
+                }
+        }
+
     }
 }

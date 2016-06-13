@@ -1,4 +1,5 @@
-﻿@model Spotify.Models.Objecten.Playlist
+﻿@using Spotify.Models.Objecten
+@model Spotify.Models.Objecten.Playlist
 
 @{
     ViewBag.Title = "Playlists";
@@ -7,4 +8,51 @@
 
 <link href="~/Content/Vieuw.css" rel="stylesheet" />
 <h2>@Model.Name</h2>
+@if (Model.Songs.Count == 0)
+{
+    <h3>Je hebt nog geen nummers toegevoegd aan je afspeellijst</h3>
+}
+else
+{
+    <table>
+        <tr>
+            <th>Naam:</th>
+            <th>Artiesten:</th>
+            <th>Speelduur:</th>
+            <th>Genres:</th>
+            <th></th>
+        </tr>
+        @foreach (Song song in Model.Songs)
+        {
+            <tr>
+                <td>@Html.Label(song.Name)</td>
+                <td>
+                    @foreach (Artist artist in song.Artists)
+                    {
+                        @Html.Label(artist.Name)
+                    }
+                </td>
+                <td>@Html.Label(song.Speelduur.ToString("N2"))</td>
+                <td>
+                    @foreach (Genre genre in song.Genres)
+                    {
+                        @Html.Label(genre.Name)
+                    }
+                </td>
+                <td>
+                    @using (@Html.BeginForm("SongRemovePlaylist", "Music"))
+                    {
+                        @Html.Hidden("playlistid", @Model.ID)
+                        @Html.Hidden("songid", song.ID)
+                        @Html.Hidden("id", @Model.ID)
+                        @:<input type="submit" value="verwijder uit afspeellijst" class="btn btn-default" style="background-color: rgb(40, 40, 40); color: white">
+                    }
+                </td>
 
+            </tr>
+        }
+
+
+    </table>
+
+}

@@ -20,10 +20,23 @@ namespace Spotify.Controllers
         [HttpGet]
         public ActionResult Add(int id)
         {
-            AccountSongID accountS = new AccountSongID();
-            accountS.Account = Database.GetAccount(User.Identity.Name);
-            accountS.ID = id;
-            return PartialView(accountS);
+            if (check())
+            {
+                AccountSongID accountS = new AccountSongID();
+                accountS.Account = Database.GetAccount(User.Identity.Name);
+                accountS.ID = id;
+                return PartialView(accountS);
+            }
+            return RedirectToAction("Index", "Login");
+        }
+
+        public bool check()
+        {
+            if (User.Identity.Name != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

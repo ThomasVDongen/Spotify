@@ -37,5 +37,11 @@ namespace Spotify.Controllers
 
             else return RedirectToAction("Index", "Home");
         }
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Login");
+        }
     }
 }

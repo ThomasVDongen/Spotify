@@ -20,16 +20,17 @@ namespace Spotify.Controllers
             Account account = Database.GetAccount(User.Identity.Name);
             return View(Database.GetSongs(account.ID));
         }
-
+        [HttpGet]
         public ActionResult Artiesten()
         {
             Account account = Database.GetAccount(User.Identity.Name);
             return View(Database.GetArtists(account.ID));
         }
-
+        [HttpGet]
         public ActionResult Albums()
         {
-            return View();
+            Account account = Database.GetAccount(User.Identity.Name);
+            return View(Database.GetAlbums(account.ID));
         }
         [HttpGet]
         public ActionResult Playlist(int id)

@@ -15,5 +15,6 @@ namespace Spotify.Controllers
         {
             return View(Database.GetAccount(User.Identity.Name));
         }
+
     }
 }
