@@ -221,7 +221,6 @@
     <Compile Include="Models\Objecten\Song.cs" />
     <Compile Include="Models\ZoekenModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Album.css" />
